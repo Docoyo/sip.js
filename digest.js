@@ -128,7 +128,7 @@ exports.challenge = function(ctx, rs) {
   );
 
   return rs;
-}
+};
 
 exports.authenticateRequest = function(ctx, rq, creds) {
   var response = findDigestRealm(rq.headers[ctx.proxy ? 'proxy-authorization': 'authorization'], ctx.realm);
@@ -158,7 +158,7 @@ exports.authenticateRequest = function(ctx, rq, creds) {
   } 
 
   return false;
-}
+};
 
 exports.signResponse = function(ctx, rs) {
   var nc = numberTo8Hex(ctx.nc);
@@ -169,7 +169,7 @@ exports.signResponse = function(ctx, rs) {
     rspauth: q(calculateDigest({ha1:ctx.ha1, method:'', nonce:ctx.nonce, nc:nc, cnonce:ctx.cnonce, qop:ctx.qop, uri:ctx.uri, entity:rs.content}))
   };
   return rs;
-}
+};
 
 function initClientContext(ctx, rs, creds) {
   var challenge;
