@@ -234,8 +234,8 @@ exports.signRequest = function (ctx, rq, rs, creds) {
   rq.headers[hname] = (rq.headers[hname] || []).filter(function(x) { return unq(x.realm) !== ctx.realm; });
   rq.headers[hname].push(signature);
 
-  return ctx.qop ? ctx : null;
-}
+  return rq;
+};
 
 exports.authenticateResponse = function(ctx, rs) {
   var signature = rs.headers[ctx.proxy ? 'proxy-authentication-info' : 'authentication-info'];
@@ -257,6 +257,6 @@ exports.authenticateResponse = function(ctx, rs) {
   }
  
   return false;
-}
+};
 
 
